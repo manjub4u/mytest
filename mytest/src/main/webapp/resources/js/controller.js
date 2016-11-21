@@ -1,54 +1,84 @@
  app.controller('myController', function ($scope,userService,Category) {
-	 $scope.categorys=[];     
-	 $scope.categorys =Category.get();
+	 $scope.categorySaved=null;
+	 $scope.showErrors=false;
+	
+	 $scope.getAllCategory=function()
+		{
+			$scope.categorys = Category.get(
+			 function() { console.log('Category came');},
+			 function(){console.log('getAllCategory method if faild'); });
+		 }
 	 
-$scope.add=function(){
- $scope.message = userService.mul(2); 
-              }	
+	 	//geting all category from database
+	   $scope.getAllCategory();
+	  
+	   $scope.openModal=function(){
+		   $scope.category={};
+		   $('#myModal').modal().show();
+	   }
+	   
+		$scope.getCategoryById=function()
+		{
+			
+		}
+		
+		$scope.saveCategory=function()
+		{		$scope.showErrors=false;
+			    $scope.obj=Category.save($scope.category,function(){ 
+			    $scope.category={}
+				$scope.categorySaved=$scope.obj.info.message;
+			    console.log($scope.obj.info.message);
+			      
+		},function(httpResponse){
+			     $scope.showErrors=true;
+		         $scope.errorMgs=httpResponse.data;
+			     console.log($scope.errorMgs.errors);
+				 $scope.errors=$scope.errorMgs.errors; });
+		 }
+		
+		//update  Category
+		$scope.updateCategory=function(){
+			$scope.showErrors=false;
+		    $scope.obj=Category.update($scope.category,function(){ 
+		    	$scope.category={};
+		    	$('#myModal').modal('hide');
+		    	alert("Category update succefully");
+	},function(httpResponse){
+		     $scope.showErrors=true;
+	         $scope.errorMgs=httpResponse.data;
+		     console.log($scope.errorMgs.errors);
+			 $scope.errors=$scope.errorMgs.errors; });
+		}
 
-$scope.getCategory=function()
-{
-	
-   $scope.catObj = Category.get({id:24},
-   function() {
-   console.log('User name is ');
-   },
-   function(){
-   alert("Hello! I am an alert box!!");
-   console.log('User could not came');
-   }
-   ); 
-   
-   $scope.something={
-			  "data": [
-			    {
-			      "pkId": 24,
-			      "createdBy": 1,
-			      "createdOn": 1478952315000,
-			      "lastModifiedOn": 1479231441000,
-			      "name": "Food is updated",
-			      "description": "Here you will get all king of food",
-			      "imgUrl": "hhttp//:Url",
-			      "active": true,
-			      "lastModifiedBy": 1
-			    }
-			  ],
-			  "self": "Get:mytest/admin/categorys/24"
-    }
-	
-}
-
-$scope.getAllCategory=function()
-{
- }
-$scope.saveCategory=function()
-{
- }
-$scope.updateCategory=function()
-{
- }
-
-$scope.deleteCategory=function()
-{
- }
+		$scope.edit=function(category)
+		{
+		
+			$('#myModal').modal().show();
+			$scope.category=category;
+			console.log(category);
+		 }
+		
+		$scope.saveOrUpdateCategory=function(id){
+			if(id==null){
+				$scope.saveCategory();
+			}else{
+				$scope.updateCategory();
+			}
+		}
+		
+		$scope.deleteCategory=function(pkId)
+		{
+			alert(pkId);
+			console.log('Deleting user with id ', pkId);
+			 var user = Category.get({id:pkId}, function() {
+                 user.$delete(function(){
+                     console.log('Deleting user with id ', pkId);
+                 });
+            });
+		 }
+		
         });
+ 
+
+	 
+ 

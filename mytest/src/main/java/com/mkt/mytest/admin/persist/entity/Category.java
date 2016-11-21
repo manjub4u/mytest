@@ -39,7 +39,7 @@ public class Category extends BaseEntity{
 	String name;
 	
 	@NotNull(message = "error.description.notnull")
-	@Size(min = 2, max = 700,message = "error.title.size")
+	@Size(min = 2, max = 700,message = "error.description.size")
 	String description;
 
 	@NotNull(message = "error.imgUrl.notnull")
