@@ -1,9 +1,7 @@
 package com.mkt.mytest.base;
-
 import org.apache.log4j.Logger;
 
 import com.mkt.mytest.admin.persist.entity.User;
-
 
 public class BaseUtil {
 	static Logger log = Logger.getLogger(BaseUtil.class.getName());

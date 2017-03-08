@@ -5,8 +5,14 @@
 	 $scope.getAllCategory=function()
 		{
 			$scope.categorys = Category.get(
-			 function() { console.log('Category came');},
-			 function(){console.log('getAllCategory method if faild'); });
+			 function() {
+				 //success
+				 console.log('Category came');
+				 },
+			 function(){
+					 //error
+					 console.log('getAllCategory method if faild'); }
+				 );
 		 }
 	 
 	 	//geting all category from database

@@ -1,5 +1,4 @@
-/*package com.mkt.app.config.security;
-
+/*package com.mkt.mytest.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
         .csrf().disable()
+        .formLogin().and()
         .authorizeRequests()
-        .antMatchers("/finds/**").hasRole("ADMIN")
-        .antMatchers("/user/**").hasRole("USER")
+        .antMatchers("/categorys/**").hasRole("ADMIN")
+        .antMatchers("/users/**").hasRole("USER")
         .anyRequest().authenticated()
-        .and().httpBasic().realmName(REALM)
+        .and().httpBasic()
         .authenticationEntryPoint(restAuthenticationEntryPoint);
     }
 }

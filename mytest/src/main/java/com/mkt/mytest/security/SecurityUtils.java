@@ -1,4 +1,4 @@
-/*package com.mkt.app.config.security;
+/*package com.mkt.mytest.security;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,8 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mkt.app.model.Response;
-import com.mkt.app.model.Error;;
+import com.mkt.mytest.model.Response;
 public class SecurityUtils {
     private static final ObjectMapper mapper = new ObjectMapper();
 

@@ -16,8 +16,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 import com.mkt.mytest.admin.persist.dao.CategoryDao;
 import com.mkt.mytest.admin.persist.entity.Category;
 import com.mkt.mytest.admin.service.CategoryService;
@@ -71,4 +69,6 @@ public class CategoryServiceImpl implements CategoryService{
 	public Category getCategoryById(long id) {
 		return categoryDao.getById(id);
 	}
+
+	
 }
